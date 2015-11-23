@@ -24,27 +24,23 @@
 
   <br><label>Выберите парикмахера</label>
   <select class="form-control ccc", name='barber'>
-    <option>Jessie Pinkman</option>
-    <option selected>Walter White</option>
-    <option>Gus Pring</option>
+    <option <%= @barber == 'Jessie Pinkman' ? 'selected' : '' %>>Jessie Pinkman</option>
+    <option <%= @barber == 'Walter White' ? 'selected' : '' %>>Walter White</option>
+    <option <%= @barber == 'Gus Fring' ? 'selected' : '' %>>Gus Fring</option>
   </select>
   <br>
 
   <div class="form-group" >
     <label>Цвет краски</label>
     <select id="color" name="color">
-      <option value="#7bd148">Green</option>
-      <option value="#5484ed">Bold blue</option>
-      <option value="#a4bdfc">Blue</option>
-      <option value="#46d6db">Turquoise</option>
-      <option value="#7ae7bf">Light green</option>
-      <option value="#51b749">Bold green</option>
-      <option value="#fbd75b">Yellow</option>
-      <option value="#ffb878">Orange</option>
-      <option value="#ff887c">Red</option>
-      <option value="#dc2127">Bold red</option>
-      <option value="#dbadff">Purple</option>
-      <option value="#e1e1e1">Gray</option>
+      <option <%= @color == 'Green' ? 'selected' : '' %>>Green</option>
+      <option <%= @color == 'Blue' ? 'selected' : '' %>>Blue</option>
+      <option <%= @color == 'Turquoise' ? 'selected' : '' %>>Turquoise</option>
+      <option <%= @color == 'Yellow' ? 'selected' : '' %>>Yellow</option>
+      <option <%= @color == 'Orange' ? 'selected' : '' %>>Orange</option>
+      <option <%= @color == 'Red' ? 'selected' : '' %>>Red</option>
+      <option <%= @color == 'Purple' ? 'selected' : '' %>>Purple</option>
+      <option <%= @color == 'Gray' ? 'selected' : '' %>>Gray</option>
     </select>
   </div>
 
