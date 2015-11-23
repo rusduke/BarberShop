@@ -1,0 +1,65 @@
+<h2>Записаться</h2>
+
+
+<form action="/visit" method="POST" role="form">
+
+
+  
+  <div class="form-group">
+    <label>Ваше имя</label>
+    <input id="bbb" name="username" type="text" class="form-control" placeholder="Введите ваше имя" value=<%=@username%>>
+  </div>
+  <div class="form-group">
+
+  <div class="form-group">
+    <label>Телефон</label>
+    <input name="phone" type="text" class="form-control ccc" placeholder="Введите ваш телефон" value=<%=@phone%>>
+  </div>
+  <div class="form-group">
+
+  <div class="form-group">
+      <label>Желаемая дата записи</label><br>
+
+    <input data-provide="datepicker" type='date' name="datetime" data-date-format="dd/mm/yyyy" data-date-end-date="+7d" data-date-today-Highlight='true' data-date-start-date='0d' value=<%=@datetime%>>
+
+  <br><label>Выберите парикмахера</label>
+  <select class="form-control ccc", name='barber'>
+    <option value="Jessie Pinkman">Jessie Pinkman</option>
+    <option value="Walter White">Walter White</option>
+    <option value="Gus Pring">Gus Pring</option>
+  </select>
+  <br>
+
+  <div class="form-group" >
+    <label>Цвет краски</label>
+    <select id="color" name="color">
+      <option value="#7bd148">Green</option>
+      <option value="#5484ed">Bold blue</option>
+      <option value="#a4bdfc">Blue</option>
+      <option value="#46d6db">Turquoise</option>
+      <option value="#7ae7bf">Light green</option>
+      <option value="#51b749">Bold green</option>
+      <option value="#fbd75b">Yellow</option>
+      <option value="#ffb878">Orange</option>
+      <option value="#ff887c">Red</option>
+      <option value="#dc2127">Bold red</option>
+      <option value="#dbadff">Purple</option>
+      <option value="#e1e1e1">Gray</option>
+    </select>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Записаться</button>
+</form>
+
+
+<script type="text/javascript">
+$('.datepicker').datepicker({});
+
+</script>
+
+
+<script type="text/javascript">
+$(function(){
+  $('#color').simplecolorpicker();
+});
+</script>
