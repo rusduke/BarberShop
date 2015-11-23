@@ -4,6 +4,18 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'sqlite3'
 
+configure do
+	@db = SQLite3::Database.new 'barber.sqlite'
+	@db.execute 'CREATE TABLE IF NOT EXISTS 
+	"Customers"
+	(
+		"Id" INTEGER PRIMARY KEY AUTOINCREMENT,
+		"Name" VARCHAR,
+		"Phone" VARCHAR, 
+		"Datestamp" TEXT, 
+		"Color" TEXT, 
+		"Barber" TEXT);'
+end
 
 get '/' do
 	erb "Hello! <a href=\"https://github.com/bootstrap-ruby/sinatra-bootstrap\">Original</a> pattern has been modified for <a href=\"http://rubyschool.us/\">Ruby School</a>!!!"			
@@ -37,9 +49,9 @@ post '/visit' do
 	if @error != ''
 		return erb :visit
 	end
-		db = SQLite3::Database.new 'barber.sqlite'
-		db.execute "INSERT INTO Customers (Name, Phone, Datestamp, Color, Barber) VALUES ('#{@username}', '#{@phone}', '#{@datetime}', '#{@color}', '#{@barber}')"	
-	db.close
+		
+		@db.execute "INSERT INTO Customers (Name, Phone, Datestamp, Color, Barber) VALUES ('#{@username}', '#{@phone}', '#{@datetime}', '#{@color}', '#{@barber}')"	
+	@db.close
 
 	erb "User: #{@username}, phone #{@phone}, date & time #{@datetime}, #{@barber}, #{@color}\n"
 end 
