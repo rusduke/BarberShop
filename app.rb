@@ -38,7 +38,7 @@ post '/visit' do
 		return erb :visit
 	end
 		db = SQLite3::Database.new 'barber.sqlite'
-		db.execute "INSERT INTO Customers (Name, Phone, Datetime, Color, Barber) VALUES ('#{@username}', '#{@phone}', '#{@datetime}', '#{@color}', '#{@barber}')"	
+		db.execute "INSERT INTO Customers (Name, Phone, Datestamp, Color, Barber) VALUES ('#{@username}', '#{@phone}', '#{@datetime}', '#{@color}', '#{@barber}')"	
 	db.close
 
 	erb "User: #{@username}, phone #{@phone}, date & time #{@datetime}, #{@barber}, #{@color}\n"
