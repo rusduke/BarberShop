@@ -14,7 +14,7 @@ configure do
 		"Datestamp" TEXT, 
 		"Color" TEXT, 
 		"Barber" TEXT);'
-	@db.close
+	
 end
 
 get '/' do
