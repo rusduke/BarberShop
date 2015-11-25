@@ -6,8 +6,7 @@ require 'sqlite3'
 
 configure do
 	@db = SQLite3::Database.new 'barber.sqlite'
-	@db.execute 'CREATE TABLE IF NOT EXISTS 
-	"Customers"
+	@db.execute 'CREATE TABLE IF NOT EXISTS "Customers"
 	(
 		"Id" INTEGER PRIMARY KEY AUTOINCREMENT,
 		"Name" VARCHAR,
@@ -15,6 +14,7 @@ configure do
 		"Datestamp" TEXT, 
 		"Color" TEXT, 
 		"Barber" TEXT);'
+	@db.close
 end
 
 get '/' do
@@ -49,8 +49,8 @@ post '/visit' do
 	if @error != ''
 		return erb :visit
 	end
-		
-		@db.execute "INSERT INTO Customers (Name, Phone, Datestamp, Color, Barber) VALUES ('#{@username}', '#{@phone}', '#{@datetime}', '#{@color}', '#{@barber}')"	
+	@db = SQLite3::Database.new 'barber.sqlite'	
+	@db.execute "INSERT INTO Customers (Name, Phone, Datestamp, Color, Barber) VALUES ('#{@username}', '#{@phone}', '#{@datetime}', '#{@color}', '#{@barber}')"	
 	@db.close
 
 	erb "User: #{@username}, phone #{@phone}, date & time #{@datetime}, #{@barber}, #{@color}\n"
