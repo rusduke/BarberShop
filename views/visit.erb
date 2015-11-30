@@ -20,7 +20,7 @@
   <div class="form-group">
       <label>Желаемая дата записи</label><br>
 
-    <input data-provide="datepicker" type='date' name="datetime" data-date-format="dd/mm/yyyy" data-date-end-date="+7d" data-date-today-Highlight='true' data-date-start-date='0d' value=<%=@datetime%>>
+    <input id="datetimepicker" type="text" name="datetime" class="form-control" placeholder="Введите дату записи" value=<%=@datetime%>>
 
   <br><label>Выберите парикмахера</label>
   <select class="form-control ccc", name='barber'>
@@ -49,13 +49,9 @@
 
 
 <script type="text/javascript">
-$('.datepicker').datepicker({});
+$(function() {
 
-</script>
-
-
-<script type="text/javascript">
-$(function(){
   $('#color').simplecolorpicker();
+  $('#datetimepicker').datetimepicker();
 });
 </script>
