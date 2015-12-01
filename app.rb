@@ -72,4 +72,12 @@ post '/contacts' do
 	erb :contacts
 end 
 
+get '/showusers' do
+  db = SQLite3::Database.new 'barber.sqlite'
+  db.results_as_hash = true
+ # db.execute 'SELECT * FROM Customers' do |row|
+#	puts "#{row['Name']} date time #{'Datestamp'}"
+  #end	
+end
+
 
