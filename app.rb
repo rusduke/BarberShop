@@ -4,8 +4,14 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'sqlite3'
 
-configure do
+def get_db
 	db = SQLite3::Database.new 'barber.sqlite'
+	db.results_as_hash = true
+	return db
+end
+
+configure do
+	db = get_db
 	db.execute 'CREATE TABLE IF NOT EXISTS "Customers"
 	(
 		"Id" INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -48,7 +54,7 @@ post '/visit' do
 	if @error != ''
 		return erb :visit
 	end
-	db = SQLite3::Database.new 'barber.sqlite'	
+	db = get_db	
 	db.execute 'INSERT INTO Customers (Name, Phone, Datestamp, Color, Barber) VALUES ( ?, ?, ?, ?, ?)', [@username, @phone, @datetime, @color, @barber]
 	db.close
 
@@ -73,11 +79,12 @@ post '/contacts' do
 end 
 
 get '/showusers' do
-  db = SQLite3::Database.new 'barber.sqlite'
-  db.results_as_hash = true
- # db.execute 'SELECT * FROM Customers' do |row|
-#	puts "#{row['Name']} date time #{'Datestamp'}"
-  #end	
+  db = get_db
+  db.execute 'SELECT * FROM Customers' do |row|
+ 	puts "#{row['Name']} date time #{'Datestamp'}"
+	@results = db.execute 'SELECT * FROM Customers ORDER BY Id ASC'
+  end
+	erb :showusers
 end
 
 
